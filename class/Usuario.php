@@ -46,14 +46,47 @@ class Usuario{
             $this->setDessenha($row['dessenha']);
             $this->setDtcadastro(new  DateTime($row['dtcadastro']));
         }
-    }
+    } //OK consulta funcionando
+
+    public static function getList(){
+        $sql = new Sql();
+        return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
+    } //OK consulta funcionando
+
+    public static function search($login){ //OK consulta funcionando
+        $sql = new Sql();
+        return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+            ':SEARCH'=>"%".$login."%"
+        ));
+    } //OK consulta funcionando
+
+    public function login($login, $password){
+
+        $sql = new Sql();
+
+        $result = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+            ":LOGIN"=> $login,
+            ":PASSWORD"=> $password
+        ));
+
+        if(count($result) > 0) {
+            $row = $result[0];
+            $this->setIdusuario($row['idusuario']);
+            $this->setDeslogin($row['deslogin']);
+            $this->setDessenha($row['dessenha']);
+            $this->setDtcadastro(new  DateTime($row['dtcadastro']));
+        } else {
+            throw new Exception("Usuário ou senha inválido.");
+        }
+    } //OK consulta funcionando
 
     public function __toString(){
         return json_encode(array(
             "idusuario"=>$this->getIdusuario(),
             "deslogin"=>$this->getDeslogin(),
             "dessenha"=>$this->getDessenha(),
-            "dtcadastro"=>$this->getDtcadastro()->format("d/m/Y H:i:s")
+            "dtcadastro"=>$this->getDtcadastro()
         ));
-    }
+    } //Define como será o retorno de todas as consultas
+
 }
