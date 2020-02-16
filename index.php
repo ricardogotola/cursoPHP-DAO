@@ -7,9 +7,10 @@ require_once ("config.php");
 //    $usuarios = $sql->select("SELECT * FROM tb_usuarios");
 //    echo json_encode($usuarios);
 
-//$root = new Usuario();
-//    $root->loadById(3);
-//    echo $root;
+//Retorna um usuário pelo ID
+//$usuario = new Usuario();
+//    $usuario->loadById(8);
+//    echo $usuario;
 
 //Retorna uma lista de usuários
 //    $lista = Usuario::getList();
@@ -20,6 +21,16 @@ require_once ("config.php");
 //    echo json_encode($search);
 
 //Retorna uma lista de usuário logado
+//    $usuario = new Usuario();
+//    $usuario->login("Jose", "44444");
+//    echo $usuario;
+
+//Inserir um usuário por Stored Procedure de Banco
+//    $usuario = new Usuario("Ricardo", "1254");
+//    $usuario->insert();
+//    echo $usuario;
+
+//Atualizar o Login ou Senha do Usuário pelo ID
     $usuario = new Usuario();
-    $usuario->login("Jose", "44444");
-    echo $usuario;
+    $usuario->loadById(8);
+    $usuario->update("Rafaela","Antonella");
