@@ -31,6 +31,11 @@ require_once ("config.php");
 //    echo $usuario;
 
 //Atualizar o Login ou Senha do Usuário pelo ID
-    $usuario = new Usuario();
-    $usuario->loadById(8);
-    $usuario->update("Rafaela","Antonella");
+//    $usuario = new Usuario();
+//    $usuario->loadById(8);
+//    $usuario->update("Rafaela","Antonella");
+
+//Excluindo usuário por ID
+//    $usuario = new Usuario();
+//    $usuario->loadById(10);
+//    $usuario->delete();
